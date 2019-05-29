@@ -1,4 +1,4 @@
-package com.things.factory.plugins;
+package com.things.factory.ssdp;
 
 /**
  * Msg的实体类，格式详见toString()
@@ -15,7 +15,7 @@ class SSDPSearch extends SSDPMessage {
         this.host = HOST;
         this.man = MAN;
         this.mx = 1;
-        this.st = ST_ALL;
+        //this.st = ST_ALL;
         this.st = ST_TF;
     }
 

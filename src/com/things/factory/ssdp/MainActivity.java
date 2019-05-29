@@ -1,4 +1,4 @@
-package com.things.factory.plugins;
+package com.things.factory.ssdp;
 
 
 import android.os.Bundle;
@@ -6,22 +6,24 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.things.factory.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.things.factory.plugins.SSDPMessage.NEWLINE;
+import static com.things.factory.ssdp.SSDPMessage.NEWLINE;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<String> listReceive = new ArrayList<String>();
-    private static final String TAG = "@@@";
+    private static final String TAG = "SSDP";
     private TextView tvReceive; //显示搜寻结果
 
     @Override
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        server.start();
 
         SSDPServer.listen();
-        SSDPClient.search(this);
+        SSDPClient.search();
     }
 
     protected void receiveResult(final List<String[]> results) {
@@ -115,5 +117,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tvReceive.setText(s);
             }
         });
+
+        ArrayList<String[]> resultList = new ArrayList<String[]>();
+        String json = new Gson().toJson(resultList);
+        Log.d(TAG, json);
     }
 }

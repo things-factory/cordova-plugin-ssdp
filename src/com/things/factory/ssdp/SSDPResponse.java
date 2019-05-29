@@ -1,4 +1,4 @@
-package com.things.factory.plugins;
+package com.things.factory.ssdp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +16,6 @@ public class SSDPResponse extends SSDPMessage {
     private String searchPort;
 
     SSDPResponse() {
-        this.method = super.SL_OK;
         this.cacheMaxAge = 600;
         this.date = new Date().toString();
         this.location = HOST;
@@ -109,16 +108,17 @@ public class SSDPResponse extends SSDPMessage {
 
     public String getMessage() {
         StringBuilder content = new StringBuilder();
-        content.append("CACHE-CONTROL: max-age = " + this.getCacheMaxAge()).append(NEWLINE);
+        content.append(SL_OK);
+        content.append("CACHE-CONTROL: max-age=" + this.getCacheMaxAge()).append(NEWLINE);
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(currentTime);
         content.append("DATE: " + dateString).append(NEWLINE);
         content.append("EXT: ").append(NEWLINE);
-        content.append(this.getLocation()).append(NEWLINE);
-        content.append(this.getServer()).append(NEWLINE);
-        content.append(this.getSt()).append(NEWLINE);
-        content.append(this.getUsn()).append(NEWLINE);
+        content.append("LOCATION: ").append(this.getLocation()).append(NEWLINE);
+        content.append("SERVER: ").append(this.getServer()).append(NEWLINE);
+        content.append("ST: ").append(this.getSt()).append(NEWLINE);
+        content.append("USN: ").append(this.getUsn()).append(NEWLINE);
 
         return content.toString();
     }

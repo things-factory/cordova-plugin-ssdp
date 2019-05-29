@@ -1,5 +1,5 @@
 
-package com.things.factory.plugins;
+package com.things.factory.ssdp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

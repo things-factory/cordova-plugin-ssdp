@@ -12,7 +12,7 @@
   <platform name="android">
     <config-file target="config.xml" parent="/*">
       <feature name="SSDP">
-        <param name="android-package" value="com.things.factory.plugins.SSDPLauncher" />
+        <param name="android-package" value="com.things.factory.ssdp.SSDPLauncher" />
       </feature>
     </config-file>
 
@@ -22,13 +22,14 @@
       <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
     </config-file>
 
-    <source-file src="src/com/things/factory/plugins/Device.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPClient.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPLauncher.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPMessage.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPResponse.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPSearch.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPServer.java" target-dir="src/com/things/factory/plugins" />
-    <source-file src="src/com/things/factory/plugins/SSDPSocket.java" target-dir="src/com/things/factory/plugins" />
+    <source-file src="src/com/things/factory/ssdp/Device.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/DeviceAndroid.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPClient.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPLauncher.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPMessage.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPResponse.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPSearch.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPServer.java" target-dir="src/com/things/factory/ssdp" />
+    <source-file src="src/com/things/factory/ssdp/SSDPSocket.java" target-dir="src/com/things/factory/ssdp" />
   </platform>
 </plugin>

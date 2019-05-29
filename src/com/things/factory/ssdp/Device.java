@@ -1,4 +1,4 @@
-package com.things.factory.plugins;
+package com.things.factory.ssdp;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,8 +11,13 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class Device {
+    private String osName;
     private String macAddress;
-    //private String ipAddress;
+    private String ipAddress;
+
+    public String getOsName() {
+        return System.getProperty("os.name");
+    }
 
     public String getIpAddress() {
         List<NetworkInterface> all = null;
@@ -35,6 +40,10 @@ public class Device {
         }
 
         return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
     public String getMacAddress() {
@@ -80,7 +89,7 @@ public class Device {
         }
     }
 
-    public String loadFileAsString(String filePath) throws java.io.IOException {
+    private String loadFileAsString(String filePath) throws java.io.IOException {
         StringBuffer data = new StringBuffer(1000);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         char[] buf = new char[1024];
