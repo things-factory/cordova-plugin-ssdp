@@ -63,11 +63,11 @@ public class SSDPClient extends Thread {
             while (curTime - time < timeout) {
                 DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
                 socket.receive(packet);
-                String result = new String(packet.getData()).trim();
+                String result = new String(packet.getData(), 0, packet.getData().length).trim();
                 if (!result.contains("HTTP/1.1 200 OK")) {
                     continue;
                 }
-                Log.d("SSDP", "client received: " + NEWLINE + result.trim());
+                Log.d("SSDP", "client received: " + NEWLINE + result);
                 //Device device = this.parseHeader(packet);
                 //SSDPLauncher launcher = new SSDPLauncher();
                 //launcher.updateResult(device);
@@ -79,7 +79,7 @@ public class SSDPClient extends Thread {
                 Intent intent = new Intent();
                 intent.setAction(ACTION_DISPATCH_DEVICE);
                 String json = new Gson().toJson(ssdpMessage);
-                Log.d("SSDP", "device:::::::" + json);
+                Log.d("SSDP", "device::" + json);
                 intent.putExtra(SSDP_MESSAGE, json);
                 context.sendBroadcast(intent);
 
