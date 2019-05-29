@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-ssdp",
+  "version": "0.0.1",
+  "description": "ssdp",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/things-factory/cordova-plugin-ssdp.git"
+  },
+  "keywords": [
+    "ssdp"
+  ],
+  "author": "",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/things-factory/cordova-plugin-ssdp/issues"
+  },
+  "homepage": "https://github.com/things-factory/cordova-plugin-ssdp#readme"
+}
