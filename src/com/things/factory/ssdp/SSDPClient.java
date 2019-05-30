@@ -137,9 +137,10 @@ public class SSDPClient extends Thread {
         HashMap<String, String> headers = new HashMap<String, String>();
         Pattern pattern = Pattern.compile("(.*): (.*)");
 
-        String[] lines = new String(packet.getData()).split("\r\n");
-
+        String[] lines = new String(packet.getData(), 0, packet.getData().length).trim().split("\r\n");
+        
         for (String line : lines) {
+            Log.d("SSDP", line);
             Matcher matcher = pattern.matcher(line);
             if(matcher.matches()) {
                 headers.put(matcher.group(1).toUpperCase(), matcher.group(2));
