@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Device {
     private String osName;
+    private String st;
     private String macAddress;
     private String ipAddress;
 
@@ -44,6 +45,20 @@ public class Device {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public String getDeviceSt() {
+        if (this.st != null) {
+            return this.st;
+        }
+
+        try {
+            this.st = this.getFileContent("/etc/strongswan.conf");
+            return st;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public String getMacAddress() {
@@ -80,16 +95,16 @@ public class Device {
             return null;
         }
 
-        //ethernet
+        //ethernet ?
         try {
-            return loadFileAsString("/sys/class/net/eth0/address").toUpperCase().substring(0, 17);
+            return getFileContent("/sys/class/net/eth0/address").toUpperCase().substring(0, 17);
         } catch (IOException e) {
             e.printStackTrace();
             return "02:00:00:00:00:00";
         }
     }
 
-    private String loadFileAsString(String filePath) throws java.io.IOException {
+    private String getFileContent(String filePath) throws java.io.IOException {
         StringBuffer data = new StringBuffer(1000);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         char[] buf = new char[1024];

@@ -53,7 +53,8 @@ public class SSDPLauncher extends CordovaPlugin {
         } else if (action.equals(ACTION_SEARCH)) {
             this.callbackContext = callbackContext;
             try {
-                SSDPClient.search(webView.getContext(), 2000);
+                String st = rawArgs.getString(0);
+                SSDPClient.search(webView.getContext(), st, 2000);
             } catch(Exception e) {
                 callbackContext.error("Searching Exception");
                 PluginResult r = new PluginResult(PluginResult.Status.ERROR);
@@ -61,7 +62,7 @@ public class SSDPLauncher extends CordovaPlugin {
                 return true;
             }
 
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "HelloWorld");
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "SSDP Search callback setting as continuous~~");
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
             //callbackContext.success();

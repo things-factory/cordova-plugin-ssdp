@@ -1,6 +1,9 @@
 package com.things.factory.ssdp;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.things.factory.R;
+
+import org.apache.cordova.PluginResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvReceive = (TextView) findViewById(R.id.tv_show_receive);
         Button btn = (Button) findViewById(R.id.btnSendSSDPSearch);
         btn.setOnClickListener(this);
+
+        new SSDPLauncher();
     }
 
     @Override
@@ -99,7 +107,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        server.start();
 
         SSDPServer.listen();
-        SSDPClient.search();
+
+        try {
+            Thread.sleep(2000);
+        } catch(InterruptedException e) {
+            e.printStackTrace();
+        }
+        SSDPClient.search(getApplicationContext(), 2000);
     }
 
     protected void receiveResult(final List<String[]> results) {

@@ -12,6 +12,7 @@ import static com.things.factory.ssdp.SSDPMessage.NEWLINE;
 
 public class SSDPServer extends Thread {
     private MulticastSocket socket;
+    private DeviceAndroid device = null;
 
     public SSDPServer() {
         try {
@@ -29,6 +30,10 @@ public class SSDPServer extends Thread {
     }
 
     public void run() {
+        if (device == null) {
+            device = new DeviceAndroid();
+        }
+
         try {
             while(true) {
                 this.receiving();
@@ -50,22 +55,23 @@ public class SSDPServer extends Thread {
         int port = packet.getPort();
 
         String received = new String(packet.getData(), 0, packet.getData().length);
-        if (received.contains("M-SEARCH * HTTP/1.1") && received.contains(SSDPMessage.ST_TF)) {
+        if (received.contains(SSDPMessage.SL_MSEARCH) && received.contains(SSDPMessage.ST_TF) || received.contains(device.getDeviceSt())) {
+        //if (received.contains(SSDPMessage.SL_MSEARCH) && this.st.equalsIgnoreCase(SSDPMessage.ST_TF)) {
             // response device info
             SSDPResponse response = new SSDPResponse();
-            DeviceAndroid android = new DeviceAndroid();
-            response.setLocation(android.getIpAddress());
+            response.setCacheMaxAge(60);
+            response.setLocation(device.getIpAddress());
             response.setServer(System.getProperty("os.name") + "/" + Build.VERSION.RELEASE + " UPnP/1.1 " + SSDPMessage.DOMAIN_NAME + "/vfree");
-            //response.setServer(android.getManufacture() + ":" + android.getModel());
+            //response.setServer(device.getManufacture() + ":" + device.getModel());
             //response.setSt(SSDPMessage.ST_TF + System.getProperty("os.name") + ":" + Build.VERSION.RELEASE);
-            response.setSt(SSDPMessage.ST_TF);
-            response.setUsn(android.getManufacture() + ":" + android.getModel() + ":" + android.getMacAddress());
+            response.setSt(device.getDeviceSt());
+            response.setUsn(device.getManufacture() + ":" + device.getModel() + ":" + device.getMacAddress());  // android specific
 
             String message = response.getMessage();
             byte[] bytes = message.getBytes();
             socket.send(new DatagramPacket(bytes, bytes.length, address, port));
             Log.d("SSDP", "response: " + NEWLINE + message);
-        } else if (received.contains("NOTIFY * HTTP/1.1")) {
+        } else if (received.contains(SSDPMessage.SL_NOTIFY)) {
             // FIXME save?
         }
 

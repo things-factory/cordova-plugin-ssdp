@@ -23,10 +23,12 @@ public class SSDPClient extends Thread {
 
     private Context context;
     private MulticastSocket socket;
+    private String st = null;  // search target
     private long timeout;
 
-    SSDPClient(Context context, long timeout) {
+    private SSDPClient(Context context, String st, long timeout) {
         this.context = context;
+        this.st = st;
         this.timeout = timeout;
         try {
             socket = new MulticastSocket(SSDPMessage.PORT);
@@ -52,6 +54,9 @@ public class SSDPClient extends Thread {
     public void run() {
         try {
             SSDPSearch search = new SSDPSearch();
+            if (this.st != null) {
+                search.setSt(this.st);
+            }
             String message = search.getMessage();
             byte[] bytes = message.getBytes();
             InetAddress inetAddress = InetAddress.getByName(SSDPMessage.ADDRESS);
@@ -72,7 +77,7 @@ public class SSDPClient extends Thread {
                 //SSDPLauncher launcher = new SSDPLauncher();
                 //launcher.updateResult(device);
 
-                SSDPMessage ssdpMessage = this.parseHeader(packet, true);
+                SSDPMessage ssdpMessage = this.parseHeader(packet,true);
                 //SSDPLauncher launcher = new SSDPLauncher();
                 //launcher.updateResult(ssdpMessage);
 
@@ -89,14 +94,16 @@ public class SSDPClient extends Thread {
             }
         } catch(Exception e) {
             e.printStackTrace();
+        } finally {
+            socket.close();
         }
 
         socket.close();
     }
 
-    public static void search(Context context, long timeout) {
+    protected static void search(Context context, String st, long timeout) {
         timeout = timeout > 0 ? timeout : 5 * 1000;
-        SSDPClient client = new SSDPClient(context, timeout);
+        SSDPClient client = new SSDPClient(context, st, timeout);
         client.start();
     }
 
@@ -133,14 +140,13 @@ public class SSDPClient extends Thread {
         return message;
     }
 
-    public Map<String, String> parse(DatagramPacket packet) {
+    private Map<String, String> parse(DatagramPacket packet) {
         HashMap<String, String> headers = new HashMap<String, String>();
         Pattern pattern = Pattern.compile("(.*): (.*)");
 
         String[] lines = new String(packet.getData(), 0, packet.getData().length).trim().split("\r\n");
-        
+
         for (String line : lines) {
-            Log.d("SSDP", line);
             Matcher matcher = pattern.matcher(line);
             if(matcher.matches()) {
                 headers.put(matcher.group(1).toUpperCase(), matcher.group(2));

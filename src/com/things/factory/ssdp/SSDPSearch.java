@@ -11,7 +11,7 @@ class SSDPSearch extends SSDPMessage {
     private String st; /* Search target */
 
     SSDPSearch() {
-        this.method = SL_M_SEARCH;
+        this.method = SL_MSEARCH;
         this.host = HOST;
         this.man = MAN;
         this.mx = 1;
