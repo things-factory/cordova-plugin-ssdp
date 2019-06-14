@@ -1,7 +1,7 @@
 # cordova-plugin-ssdp
 
 ## `listen`:
-`ssdp.listen(searchTarget, successCallback, errorCallback)`
+`ssdp.listen(searchTarget, successCallback, errorCallback)`\n
 ex:
 ```javascript
   ssdp.listen('urn:domain-name:device:deviceType:ver', (message1, message2) => {
@@ -12,7 +12,7 @@ ex:
 ```
 
 ## `search`: 
-`ssdp.search(searchTarget, successCallback, errorCallback)`
+`ssdp.search(searchTarget, successCallback, errorCallback)`\n
 ex:
 ```javascript
   ssdp.search('urn:domain-name:device:deviceType:ver', (message) => {
