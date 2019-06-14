@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 public class Device {
+    private final String DEVICE_INFO_PATH = "/etc/strongswan.conf"; // FIXME: test path
     private String osName;
     private String st;
     private String macAddress;
@@ -53,7 +54,7 @@ public class Device {
         }
 
         try {
-            this.st = this.getFileContent("/etc/strongswan.conf");  // FIXME
+            this.st = this.getFileContent(DEVICE_INFO_PATH);
             return st;
         } catch(Exception e) {
             e.printStackTrace();
