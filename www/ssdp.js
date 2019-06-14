@@ -8,8 +8,8 @@ ssdpExport.search = (st, successCallback, errorCallback) => {
   exec(successCallback, errorCallback, 'SSDP', 'search', [st])
 }
 
-ssdpExport.listen = (successCallback, errorCallback) => {
-  exec(successCallback, errorCallback, 'SSDP', 'listen', [])
+ssdpExport.listen = (st, successCallback, errorCallback) => {
+  exec(successCallback, errorCallback, 'SSDP', 'listen', [st])
 }
 
 module.exports = ssdpExport

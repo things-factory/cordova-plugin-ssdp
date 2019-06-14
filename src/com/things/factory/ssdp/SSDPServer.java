@@ -13,8 +13,11 @@ import static com.things.factory.ssdp.SSDPMessage.NEWLINE;
 public class SSDPServer extends Thread {
     private MulticastSocket socket;
     private DeviceAndroid device = null;
+    private String st;
 
-    public SSDPServer() {
+    public SSDPServer(String st) {
+        this.st = st == null ? SSDPMessage.ST_TF : st;
+
         try {
             socket = new MulticastSocket(SSDPMessage.PORT);
             InetAddress inetAddress = InetAddress.getByName(SSDPMessage.ADDRESS);
@@ -24,8 +27,8 @@ public class SSDPServer extends Thread {
         }
     }
 
-    public static void listen() {
-        SSDPServer server = new SSDPServer();
+    public static void listen(String st) {
+        SSDPServer server = new SSDPServer(st);
         server.start();
     }
 

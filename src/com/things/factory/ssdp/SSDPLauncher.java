@@ -40,7 +40,8 @@ public class SSDPLauncher extends CordovaPlugin {
     public boolean execute(String action, JSONArray rawArgs, CallbackContext callbackContext) throws JSONException {
         if (action.equals(ACTION_LISTEN)) {
             try {
-                SSDPServer.listen();
+                String st = rawArgs.getString(0);
+                SSDPServer.listen(st);
             } catch(Exception e) {
                 callbackContext.error("Listening Exception");
                 PluginResult r = new PluginResult(PluginResult.Status.ERROR);

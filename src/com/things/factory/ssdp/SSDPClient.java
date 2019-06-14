@@ -28,8 +28,9 @@ public class SSDPClient extends Thread {
 
     private SSDPClient(Context context, String st, long timeout) {
         this.context = context;
-        this.st = st;
         this.timeout = timeout;
+        this.st = st == null ? SSDPMessage.ST_TF : st;
+
         try {
             socket = new MulticastSocket(SSDPMessage.PORT);
             InetAddress inetAddress = InetAddress.getByName(SSDPMessage.ADDRESS);
