@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-ssdp",
   "version": "0.0.1",
-  "description": "ssdp",
+  "description": "cordova ssdp discover",
   "main": "index.js",
   "scripts": {
     "test": "test"
@@ -11,7 +11,9 @@
     "url": "git+https://github.com/things-factory/cordova-plugin-ssdp.git"
   },
   "keywords": [
-    "ssdp"
+    "ssdp",
+    "discover",
+    "cordova"
   ],
   "author": "",
   "license": "Apache 2.0",
