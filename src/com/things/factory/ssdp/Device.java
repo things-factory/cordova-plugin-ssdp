@@ -53,7 +53,7 @@ public class Device {
         }
 
         try {
-            this.st = this.getFileContent("/etc/strongswan.conf");
+            this.st = this.getFileContent("/etc/strongswan.conf");  // FIXME
             return st;
         } catch(Exception e) {
             e.printStackTrace();

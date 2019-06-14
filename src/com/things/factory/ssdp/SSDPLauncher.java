@@ -62,7 +62,8 @@ public class SSDPLauncher extends CordovaPlugin {
                 return true;
             }
 
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "SSDP Search callback setting as continuous~~");
+            //PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "SSDP Search callback setting as continuous~~");
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "");
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
             //callbackContext.success();

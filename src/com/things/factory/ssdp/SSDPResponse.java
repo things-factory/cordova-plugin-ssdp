@@ -108,7 +108,7 @@ public class SSDPResponse extends SSDPMessage {
 
     public String getMessage() {
         StringBuilder content = new StringBuilder();
-        content.append(SL_OK);
+        content.append(SL_OK).append(NEWLINE);
         content.append("CACHE-CONTROL: max-age=" + this.getCacheMaxAge()).append(NEWLINE);
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
