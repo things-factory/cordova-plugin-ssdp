@@ -16,7 +16,7 @@ public class SSDPServer extends Thread {
     private String st;
 
     public SSDPServer(String st) {
-        this.st = st == null ? SSDPMessage.ST_TF : st;
+        this.st = st == null ? SSDPMessage.ST_TF : st;  // FIXME if read from file
 
         try {
             socket = new MulticastSocket(SSDPMessage.PORT);
