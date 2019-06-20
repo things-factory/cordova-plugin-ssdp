@@ -106,14 +106,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        SSDPServer server = new SSDPServer();
 //        server.start();
 
-        SSDPServer.listen();
+        SSDPServer.listen(null);
 
         try {
             Thread.sleep(2000);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
-        SSDPClient.search(getApplicationContext(), 2000);
+        SSDPClient.search(getApplicationContext(),null,2000);
     }
 
     protected void receiveResult(final List<String[]> results) {

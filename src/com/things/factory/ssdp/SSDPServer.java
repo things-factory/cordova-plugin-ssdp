@@ -68,7 +68,7 @@ public class SSDPServer extends Thread {
             //response.setServer(device.getManufacture() + ":" + device.getModel());
             //response.setSt(SSDPMessage.ST_TF + System.getProperty("os.name") + ":" + Build.VERSION.RELEASE);
             response.setSt(device.getDeviceSt());
-            response.setUsn(device.getManufacture() + ":" + device.getModel() + ":" + device.getMacAddress());  // android specific
+            response.setUsn(device.getManufacture() + ":" + device.getModel() + "|" + device.getMacAddress());  // android specific
 
             String message = response.getMessage();
             byte[] bytes = message.getBytes();

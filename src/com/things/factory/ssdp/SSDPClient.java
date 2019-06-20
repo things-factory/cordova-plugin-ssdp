@@ -63,6 +63,7 @@ public class SSDPClient extends Thread {
             InetAddress inetAddress = InetAddress.getByName(SSDPMessage.ADDRESS);
             DatagramPacket p = new DatagramPacket(bytes, bytes.length, inetAddress, SSDPMessage.PORT);
             socket.send(p);
+            Log.d("SSDP", "client search: " + NEWLINE + message);
 
             long time = System.currentTimeMillis();
             long curTime = System.currentTimeMillis();

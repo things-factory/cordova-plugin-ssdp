@@ -63,8 +63,7 @@ public class SSDPLauncher extends CordovaPlugin {
                 return true;
             }
 
-            //PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "SSDP Search callback setting as continuous~~");
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, "");
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
             //callbackContext.success();
@@ -112,11 +111,11 @@ public class SSDPLauncher extends CordovaPlugin {
                         Log.d(TAG, "json is null");
                         return;
                     }
-                    Log.d(TAG, json);
+                    //Log.d(TAG, json);
                     PluginResult r = new PluginResult(PluginResult.Status.OK, json);
                     r.setKeepCallback(true);
                     callbackContext.sendPluginResult(r);
-                    webView.postMessage("ssdpdevice", json);
+                    //webView.postMessage("ssdpdevice", json);
                 }
             };
         }
