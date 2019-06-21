@@ -106,13 +106,13 @@ public class SSDPLauncher extends CordovaPlugin {
                     //    return;
                     //}
 
-                    String json = intent.getStringExtra(SSDPClient.SSDP_MESSAGE);
-                    if (json == null) {
+                    String message = intent.getStringExtra(SSDPClient.SSDP_MESSAGE);
+                    if (message == null) {
                         Log.d(TAG, "json is null");
                         return;
                     }
                     //Log.d(TAG, json);
-                    PluginResult r = new PluginResult(PluginResult.Status.OK, json);
+                    PluginResult r = new PluginResult(PluginResult.Status.OK, message);
                     r.setKeepCallback(true);
                     callbackContext.sendPluginResult(r);
                     //webView.postMessage("ssdpdevice", json);
