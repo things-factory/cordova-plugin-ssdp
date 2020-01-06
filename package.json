@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ssdp",
-  "version": "1.0.0-alpha.1",
+  "version": "2.0.0",
   "description": "Discover other devices in the same network. 用udp发现网络内的其他设备",
   "main": "index.js",
   "scripts": {
